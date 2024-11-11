@@ -50,7 +50,7 @@ llm = Ollama(model="llama3.2")
 
 # Streamlit UI
 st.set_page_config(layout="wide", initial_sidebar_state="expanded")
-st.title("Enhanced Document QA Chat Messenger")
+st.title("Content Engine Chat Engine")
 
 # Initialize chat history in session state
 if "chat_history" not in st.session_state:
@@ -154,13 +154,6 @@ for chat in st.session_state["chat_history"]:
     st.markdown(f'<div class="user-message"><strong>User:</strong> {chat["query"]}</div>', unsafe_allow_html=True)
     st.markdown(f'<div class="ai-message"><strong>Answer:</strong> {chat["response"]}</div>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
-
-    # Display source documents if available
-    if "source_documents" in chat:
-        st.write("**Source Documents:**")
-        for j, doc in enumerate(chat["source_documents"], start=1):
-            st.write(f"Document {j}:")
-            st.write(doc)
 
 # User input for query at the bottom of the page, trigger on "Enter"
 st.text_input("Enter your message:", key="user_input", on_change=handle_send)
